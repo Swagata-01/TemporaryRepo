@@ -13,6 +13,7 @@ section{
     border-radius: 10px;
     width: 75%;
     margin-left: 10px;
+    
 }
 
 
@@ -28,10 +29,12 @@ h2{
     justify-content: space-evenly;
     gap: 50px;
     flex-wrap: wrap;
+    
 }
 
 .product {
     margin: 15px 0px;
+    cursor: pointer;
 }
 
 .product img {

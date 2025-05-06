@@ -22,7 +22,6 @@
   .nav-right a {
     text-decoration: none;
     margin: 15px;
-    font-weight: bold;
     color: white;
   }
    
@@ -34,3 +33,8 @@
   .button-link {
     cursor: pointer;
   }
+
+  .nav-left a.active,
+.nav-right a.active {
+  font-weight: bold;
+}
