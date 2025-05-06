@@ -1,0 +1,36 @@
+  /* Navigation Styles */
+  .page{
+    margin: 0;
+  }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    background-color:rgb(1, 1, 118);
+  }
+   
+  .nav-left {
+    display: flex;
+  }
+   
+  .nav-right {
+    display: flex;
+  }
+  
+  .nav-left a,
+  .nav-right a {
+    text-decoration: none;
+    margin: 15px;
+    font-weight: bold;
+    color: white;
+  }
+   
+  .nav-right a {
+    margin: 2px;
+    font-size:15px;
+  }
+
+  .button-link {
+    cursor: pointer;
+  }

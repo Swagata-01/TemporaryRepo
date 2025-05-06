@@ -1,0 +1,104 @@
+<main class="main-content">
+    <h2 class="section-title">Admin Functionalities</h2><br /><br />
+    <div class="admin-buttons">
+      <div class="admincolumn">
+        <button (click)="openAddProductPopup()">Add Product</button>
+        <button (click)="openAddMultipleProductsPopup()">Add Multiple Products</button>
+        <button (click)="openUpdateProductPopup()">Update Product</button>
+      </div>
+      <div class="admindivider"></div>
+      <div class="admincolumn">
+        <button>Add User</button>
+        <button (click)="openUpdateUserPopup()">Update User</button>
+        <button (click)="openGetUsersPopup()">Get Users</button>
+      </div>
+    </div>
+  </main>
+  <app-admin-update-user-popup
+    *ngIf="isUpdateUserPopupVisible"
+    (close)="closeUpdateUserPopup()"
+    (submit)="handleUserUpdated($event)"/>
+    
+  <app-admin-user-list-popup
+    *ngIf="showGetUsersPopup"
+    (close)="closeGetUsersPopup()"
+  ></app-admin-user-list-popup>
+  
+  <div class="popup-overlay" *ngIf="showAddProductPopup">
+    <div class="popup">
+      <h3>Add Product</h3>
+      <form (ngSubmit)="submitProduct()">
+        <input
+          type="text"
+          placeholder="Product Name"
+          [(ngModel)]="productName"
+          name="productName"
+          required
+          (input)="onProductNameInput($event)" />
+        <div *ngIf="duplicateProductNameError" class="text-danger">
+          Product name already exists. Please use a different name.
+        </div>
+        <input type="text" placeholder="Description" [(ngModel)]="productDescription" name="description" required />
+        <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" />
+        <div *ngIf="selectedImageFile" class="file-info">
+          {{ selectedImageFile.name }}
+          <span class="remove-icon" (click)="removeImage()">❌</span>
+        </div>
+        <div *ngIf="imagePreview">
+          <img [src]="imagePreview" alt="Preview" style="max-height: 150px;" />
+        </div>
+        <label>
+          Active Status:
+          <input type="checkbox" [(ngModel)]="isActive" name="activeStatus" />
+        </label>
+        <div class="button-group">
+          <button type="submit" [disabled]="duplicateProductNameError">Submit</button> <button type="button" (click)="closeAddProductPopup()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="popup-overlay" *ngIf="showAddMultipleProductsPopup">
+    <div class="popup">
+      <h3>Add Multiple Products</h3>
+      <form (ngSubmit)="submitBulkProducts()">
+        <input type="file" accept=".xlsx, .xls" (change)="onBulkFileChange($event)" required />
+        <label>
+          Active Status:
+          <input type="checkbox" [(ngModel)]="bulkProductActive" name="bulkActiveStatus" />
+        </label>
+        <div class="button-group">
+          <button type="submit">Submit</button>
+          <button type="button" (click)="closeAddMultipleProductsPopup()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="popup-overlay" *ngIf="showUpdatePopup">
+    <div class="popup">
+      <h3>Update Product</h3>
+      <input type="text" [(ngModel)]="product.name" placeholder="Search Product by Product Name" />
+      <button (click)="searchProduct()">Search</button>
+      <form *ngIf="productFound" (ngSubmit)="updateProduct()" #updateForm="ngForm">
+        <img *ngIf="previewImage" [src]="previewImage" alt="Product Image"
+          style="max-height: 150px; margin: 10px 0" />
+        <input type="text" name="upName" [(ngModel)]="product.upName" placeholder="Product Name" required />
+        <input type="text" name="upDescription" [(ngModel)]="product.upDescription" placeholder="Description"
+          required />
+        <input type="file" (change)="onUpdateFileSelected($event)" />
+        <div class="checkbox-container">
+          <label>
+            Active Status
+            <input type="checkbox" [(ngModel)]="product.active" name="active" />
+          </label>
+        </div>
+        <div class="button-group">
+          <button type="submit">Submit</button>
+          <button type="button" (click)="closeUpdateProductPopup()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  

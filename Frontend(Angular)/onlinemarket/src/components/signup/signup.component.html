@@ -1,0 +1,117 @@
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="sign-up-form">
+  <div class="row">
+    <!-- Column 1 -->
+    <div class="column">
+      <!-- First Name -->
+      <label for="firstName">First Name:</label>
+      <input id="firstName" formControlName="firstName" class="form-control" />
+      <div *ngIf="signUpForm.get('firstName')?.errors && signUpForm.get('firstName')?.touched" class="text-danger">
+        <div *ngIf="signUpForm.get('firstName')?.errors?.['required']">* First name is required.</div>
+        <div *ngIf="signUpForm.get('firstName')?.errors?.['pattern']">* Enter a valid first name (3-15 characters, letters, dots, or underscores).</div>
+      </div>
+ 
+      <!-- Last Name -->
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" formControlName="lastName" class="form-control" />
+      <div *ngIf="signUpForm.get('lastName')?.errors && signUpForm.get('lastName')?.touched" class="text-danger">
+        <div *ngIf="signUpForm.get('lastName')?.errors?.['required']">* Last name is required.</div>
+        <div *ngIf="signUpForm.get('lastName')?.errors?.['pattern']">* Enter a valid last name (3-15 characters, letters, dots, or underscores).</div>
+      </div>
+ 
+      <!-- Nickname -->
+      <label for="nickName">Nickname:</label>
+      <input id="nickName" formControlName="nickName" class="form-control" />
+      <div *ngIf="signUpForm.get('nickName')?.errors && signUpForm.get('nickName')?.touched" class="text-danger">
+        <div *ngIf="signUpForm.get('nickName')?.errors?.['pattern']">* Enter a valid nickname (3-15 characters, letters, dots, or underscores).</div>
+      </div>
+ 
+      <!-- Date of Birth -->
+      <label for="dob">Date of Birth:</label>
+      <input id="dob" type="date" pattern="dd-MM-yyyy" formControlName="dob" class="form-control" />
+      <div *ngIf="signUpForm.get('dob')?.errors && signUpForm.get('dob')?.touched" class="text-danger">
+        <div *ngIf="signUpForm.get('dob')?.errors?.['required']">* Date of Birth is required.</div>
+        <div *ngIf="signUpForm.get('dob')?.errors?.['minAge']">* Minimum age is 18 years.</div>
+      </div>
+ 
+      <!-- Phone -->
+      <label for="contactNo">Phone:</label>
+      <input id="contactNo" type="text" formControlName="contactNo" class="form-control" />
+      <div *ngIf="signUpForm.get('contactNo')?.errors && signUpForm.get('contactNo')?.touched" class="text-danger">
+        <div *ngIf="signUpForm.get('contactNo')?.errors?.['required']">* Phone number is required.</div>
+        <div *ngIf="signUpForm.get('contactNo')?.errors?.['pattern']">* Enter a valid phone number.</div>
+      </div>
+    </div>
+ 
+    <!-- Column 2 -->
+    <div class="column">
+      <!-- Address Line 1 -->
+      <label for="addressLine1">Address Line 1:</label>
+      <input id="addressLine1" formControlName="addressLine1" class="form-control" />
+      <div *ngIf="signUpForm.get('addressLine1')?.errors && signUpForm.get('addressLine1')?.touched" class="text-danger">
+        <div *ngIf="signUpForm.get('addressLine1')?.errors?.['required']">* Address Line 1 is required.</div>
+        <div *ngIf="signUpForm.get('addressLine1')?.errors?.['minlength']">* Minimum length for Address Line 1 is 10 characters.</div>
+      </div>
+ 
+      <!-- Address Line 2 -->
+      <label for="addressLine2">Address Line 2:</label>
+      <input id="addressLine2" formControlName="addressLine2" class="form-control" />
+      <div *ngIf="signUpForm.get('addressLine2')?.errors && signUpForm.get('addressLine2')?.touched" class="text-danger">
+        <div *ngIf="signUpForm.get('addressLine2')?.errors?.['required']">* Address Line 2 is required.</div>
+        <div *ngIf="signUpForm.get('addressLine2')?.errors?.['minlength']">* Minimum length for Address Line 2 is 10 characters.</div>
+      </div>
+ 
+      <!-- Postal Code -->
+      <label for="postalCode">Postal Code:</label>
+      <input id="postalCode" formControlName="postalCode" class="form-control" />
+      <div *ngIf="signUpForm.get('postalCode')?.errors && signUpForm.get('postalCode')?.touched" class="text-danger">
+        <div *ngIf="signUpForm.get('postalCode')?.errors?.['required']">* Postal code is required.</div>
+        <div *ngIf="signUpForm.get('postalCode')?.errors?.['pattern']">* Enter a valid postal code (6 digits).</div>
+      </div>
+ 
+      <!-- Photo Upload -->
+      <label for="photo">Upload Photo:</label>
+      <br>
+      <div class="photo-field">
+        <input id="photo" type="file" (change)="onFileChange($event)" class="form-control" />
+        <span class="remove-photo" (click)="removePhoto()">&#x2715;</span>
+      </div>
+      <div *ngIf="photoError" class="text-danger">
+        {{"* "+photoError }}
+      </div>
+    </div>
+ 
+    <!-- Column 3 -->
+    <div class="column">
+      <!-- Email -->
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" class="form-control" />
+      <div *ngIf="signUpForm.get('email')?.errors && signUpForm.get('email')?.touched" class="text-danger">
+        <div *ngIf="signUpForm.get('email')?.errors?.['required']">* Email is required.</div>
+        <div *ngIf="signUpForm.get('email')?.errors?.['pattern']">* Enter a valid email address.</div>
+        <div *ngIf="signUpForm.get('email')?.errors?.['potentialDuplicate']">* This email address may already be registered. Please try a different one.</div>
+      </div>
+ 
+      <!-- Password -->
+      <label for="password">Password:</label>
+      <input id="password" type="password" formControlName="password" class="form-control" />
+      <div *ngIf="signUpForm.get('password')?.errors && signUpForm.get('password')?.touched" class="text-danger">
+        <div *ngIf="signUpForm.get('password')?.errors?.['required']">* Password is required.</div>
+        <div *ngIf="signUpForm.get('password')?.errors?.['pattern']">* Password must include at least one uppercase letter, one lowercase letter, and one number (min 6 characters).</div>
+      </div>
+     
+ 
+ 
+      <!-- Confirm Password -->
+      <label for="confirmPassword">Confirm Password:</label>
+      <input id="confirmPassword" type="password" formControlName="confirmPassword" class="form-control" />
+      <div *ngIf="signUpForm.get('confirmPassword')?.errors && signUpForm.get('confirmPassword')?.touched" class="text-danger">
+        <div *ngIf="signUpForm.get('confirmPassword')?.errors?.['required']">* Confirmation password is required.</div>
+        <div *ngIf="signUpForm.get('confirmPassword')?.errors?.['mismatch']" class="text-danger">
+          * Passwords do not match.
+        </div>        
+      </div>
+ 
+      <button type="submit" [disabled]="signUpForm.invalid || photoError" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>

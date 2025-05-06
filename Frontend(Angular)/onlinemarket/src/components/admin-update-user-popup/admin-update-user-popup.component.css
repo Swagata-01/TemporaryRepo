@@ -1,0 +1,441 @@
+/* admin-update-user-popup.component.css */
+ 
+/* Overlay behind the pop-up */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+ 
+/* Main pop-up content area (Light purple background) */
+.popup-content {
+    background-color: #edb7e7;
+    margin: 15% auto;
+    padding: 20px;
+    border: 3px solid  purple;
+    border-color: #822d9b;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 8px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    color: #222222;
+}
+ 
+h2, h3 {
+    color: #333333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+ 
+/* Close Button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+}
+ 
+.close-button:hover {
+    color: black;
+}
+ 
+/* Search Section */
+.search-section {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+ 
+.search-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+ 
+.search-container input[type="email"] {
+    width: calc(100% - 110px);
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+ 
+.search-button,
+.action-buttons button {
+    background-color: #800080; /* Darker purple button */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+ 
+.search-button:hover,
+.action-buttons button:hover {
+    background-color: #660066; /* Slightly darker shade for hover */
+}
+ 
+.action-buttons {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+ 
+/* Active Status Toggle */
+.active-status-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+ 
+.active-status-container label {
+    font-weight: bold;
+    color: #555;
+    margin-right: 10px;
+}
+ 
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+ 
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+ 
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+ 
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+ 
+input:checked + .slider {
+    background-color: #4caf50; /* Green when active */
+}
+ 
+input:focus + .slider {
+    box-shadow: 0 0 1px #4caf50;
+}
+ 
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+ 
+.status-text {
+    margin-left: 5px;
+    font-size: 0.9em;
+    color: #555;
+}
+ 
+/* Profile Section */
+.profile-section h3 {
+    text-align: left;
+}
+ 
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+ 
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+ 
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+ 
+.section-submit-button {
+    background-color: #28a745; /* Green for section submit (if applicable) */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+}
+ 
+.section-submit-button:hover {
+    background-color: #1e7e34;
+}
+ 
+/* Subscriptions Section */
+.subscriptions-section h3 {
+    text-align: left;
+}
+ 
+.subscription-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+ 
+.subscription-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+ 
+.product-image {
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+ 
+.product-info {
+    flex-grow: 1;
+}
+ 
+.product-name {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+ 
+.subscribers, .rating {
+    color: #777;
+    font-size: 0.9em;
+    margin-bottom: 3px;
+}
+ 
+.subscription-item input[type="checkbox"] {
+    margin-left: auto;
+}
+ 
+/* Reviews Section */
+.reviews-section h3 {
+    text-align: left;
+}
+ 
+.review-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+ 
+.review-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+}
+ 
+.product-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+ 
+.user-review {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+ 
+.user-rating {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+ 
+.user-comment {
+    color: #777;
+    font-size: 0.95em;
+}
+ 
+.delete-button {
+    background-color: #dc3545; /* Red for delete */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-left: auto;
+}
+ 
+.delete-button:hover {
+    background-color: #c82333;
+}
+ 
+.reviews-section {
+    margin-top: 20px; /* Add some space above the reviews section */
+    padding: 15px; /* Add some padding around the reviews section */
+    border: 3px solid purple; /* Add a subtle border */
+    border-radius: 5px; /* Add rounded corners */
+    background-color: #edb7e7; /* Light background color */
+  }
+ 
+  .reviews-section h3 {
+    margin-top: 0; /* Remove default top margin for the heading */
+    margin-bottom: 15px; /* Add space below the heading */
+    color: #333; /* Dark text color for the heading */
+  }
+ 
+  .review-container {
+    border: 2px solid purple;
+    margin-bottom: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #edb7e7; /* Background for each review */
+    border-radius: 3px;
+  }
+ 
+  .product-info-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+ 
+  .product-image-small {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+ 
+  .product-details-small {
+    display: flex;
+    flex-direction: column;
+  }
+ 
+  .product-name-small {
+    font-weight: bold;
+  }
+ 
+  .product-rating-small {
+    font-size: 0.9em;
+    color: gold;
+  }
+ 
+  .user-review-box {
+    /* Style for the user's review box */
+    border: 1px solid purple;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+ 
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+ 
+  .review-rating {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: gold;
+  }
+ 
+  .delete-button {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 1.2em;
+  }
+ 
+  .review-text {
+    margin-bottom: 8px;
+  }
+ 
+  .review-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+  }
+ 
+  .status-toggle-button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    font-size: 0.8em;
+  }
+ 
+  .section-submit-button {
+    display: block; /* Make it take full width and appear on a new line */
+    width: 100%; /* Occupy the full width of its container */
+    padding: 10px 15px; /* Add some vertical and horizontal padding */
+    margin-top: 20px; /* Add some space above the button */
+    border: none; /* Remove default button border */
+    border-radius: 5px; /* Add rounded corners */
+    background-color: #007bff; /* Use a primary blue color (adjust as needed) */
+    color: white; /* White text color */
+    font-size: 1.1em; /* Slightly larger font size */
+    cursor: pointer; /* Change cursor to indicate it's clickable */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    text-align: center; /* Center the text inside the button */
+  }
+ 
+  .section-submit-button:hover {
+    background-color: #0056b3; /* Darker shade of blue on hover */
+  }
+ 
+  .section-submit-button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); /* Add a custom focus shadow */
+  }

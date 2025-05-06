@@ -1,0 +1,35 @@
+<!-- <app-searchfilter></app-searchfilter>  -->
+
+<section class="all-products">
+  <div class="all-product-list">
+    <h2>All Products</h2>
+    <div class="all-product-container" id="product-list">
+      <div *ngFor="let product of productList" class="product" [attr.data-id]="product.productid"
+        (click)="viewProductDetails(product.productid)">
+        <div class="productimage">
+          <img [src]="product.imageUrl" alt="{{product.name}}">
+        </div>
+        <div class="productdescription">
+          {{product.name}}
+          <br>{{product.subscription_count}} subscribes
+          <br>
+          {{product.avg_rating}} stars
+
+        </div>
+      </div>
+      <div *ngIf="productList.length === 0">
+        <div class="no-product"> No products are available according to the filters applied.</div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="filter-section">
+    <app-searchfilter></app-searchfilter>
+  </div>
+  <div *ngIf="!productList">
+    <p>No Products are found</p>
+  </div>
+</section>

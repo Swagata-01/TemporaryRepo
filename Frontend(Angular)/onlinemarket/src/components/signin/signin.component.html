@@ -1,0 +1,33 @@
+  <div class="container">
+    <div class="signin">
+      <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+        <h2>Sign In</h2>    
+ 
+        <div class="row">
+          <div class="column">
+            <input type="text" formControlName="email" placeholder="Email" required>
+            <div *ngIf="signInForm.get('email')?.invalid && signInForm.get('email')?.touched" class="error">
+              <div *ngIf="signInForm.get('email')?.errors?.['required']">Email is required.</div>
+              <div *ngIf="signInForm.get('email')?.errors?.['email']">Enter a valid email.</div>
+            </div>
+ 
+            <input type="password" formControlName="password" placeholder="Password" required>
+            <div *ngIf="signInForm.get('password')?.invalid && signInForm.get('password')?.touched" class="error">
+              <div *ngIf="signInForm.get('password')?.errors?.['required']">Password is required.</div>
+              <div *ngIf="signInForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</div>
+            </div>
+          </div>
+        </div>
+ 
+        <re-captcha (resolved)="onCaptchaResolved($event)" siteKey="6Lf_uRMrAAAAAMXgbKvXDk9Mmwza9GaZY3bvoRFG"></re-captcha>
+                
+        <button type="submit" class="submit" [disabled]="signInForm.invalid">Submit</button>
+      </form>
+      <a href="#" class="forgot-password" [routerLink]="'/forgot-page'">Forgot Password?</a>
+    </div>
+ 
+    <div class="divider"></div>
+    <div class="signup">
+      <button class="signup-btn" [routerLink]="'/signup'">Sign Up</button>
+    </div>
+  </div>

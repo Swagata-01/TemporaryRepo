@@ -1,0 +1,100 @@
+<div class="specific-product-information">
+  <div id="product-details" class="specific-product-details">
+    <div class="product-image-container" *ngIf="product">
+      <div>
+        <h3>{{product.name}}</h3>
+      </div>
+      <img [src]="product.imageUrl" alt="{{product.name}}"
+        class="product-image">
+      <div>
+        <p class="product-meta" id="product-meta">
+          {{product.name}}
+          <br>{{product.subscription_count}} subscribes
+          <br>
+          {{product.avg_rating}} stars
+        </p>
+      </div>
+    </div>
+
+    <div class="product-desc-container">
+      <ul class="product-description">
+        <li><i>{{product?.description}}</i></li>
+      </ul>
+
+      <div class="button-container">
+        <button class="subscribe-btn" (click)="openSubscribePopup()">Subscribe</button>
+        <button class="review-btn" (click)="openReviewPopup()">Add a Review</button>
+        <button
+          class="subscriber-btn"
+          *ngIf="userService.isAdmin$ | async"
+          (click)="openSubscribersPopup()"
+        >
+          Subscribers List (Admin only)
+        </button>
+      </div>
+    </div>
+
+    <app-user-review></app-user-review>
+
+    <div *ngIf="!product">
+      <p>Product Not Found</p>
+    </div>
+
+    <app-subscriber-list
+      *ngIf="showSubscribersPopup"
+      [product_Id]="product?.productid"
+      (close)="closeSubscribersPopup()"
+    ></app-subscriber-list>
+
+    <div class="popup-overlay" *ngIf="showReviewPopup">
+      <div class="popup" *ngIf="!loggedIn">
+        <p>Please Sign In to add a review</p>
+        <button class="signin-btn" [routerLink]="'/signin'">Sign In</button>
+        <button class="close-btn" (click)="closeReviewPopup()">Close</button>
+      </div>
+      <div class="popup" *ngIf="loggedIn">
+        <h3>Add a Review</h3>
+        <p class="userName"><strong>{{ userName}}</strong></p>
+        <div class="rating">
+          <span
+            *ngFor="let star of stars; let i = index"
+            (click)="rate(i + 1)"
+            [class.filled]="i < rating"
+            class="star"
+            >★</span
+          ><br />
+        </div>
+        <div *ngIf="reviewError === 'Please select a rating.'" class="error-message">Rating is missing</div>
+        <input type="text" placeholder="Review Descriptions" [(ngModel)]="reviewDescription" />
+        <div *ngIf="reviewError === 'Please enter a review description.'" class="error-message">
+          Please give Review Description
+        </div>
+        <div *ngIf="reviewError.startsWith('Review description must be at least')" class="error-message">
+          {{ reviewError }}
+        </div>
+        <button class="submit-btn" (click)="submitReview()" [disabled]="reviewSubmitted">Submit Review</button>
+        <button class="close-btn" (click)="closeReviewPopup()">Close</button>
+      </div>
+    </div>
+
+    <div class="popup-overlay" *ngIf="showSubscribePopup">
+      <div class="popup" *ngIf="!loggedIn">
+        <p>Please Sign In to subscribe</p>
+        <button class="signin-btn" [routerLink]="'/signin'">Sign In</button>
+        <button class="close-btn" (click)="closeSubscribePopup()">Close</button>
+      </div>
+      <div class="popup" *ngIf="loggedIn">
+        <h3>Subscribe</h3>
+        <p class="userName"><strong>{{ userName}}</strong></p>
+        <div class="subscribe-status-container">
+          <div class="status-text">Subscribe Status</div>
+          <label class="checkbox-label">
+            <input type="checkbox" [(ngModel)]="isSubscribed" (change)="toggleSubscription()" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <button class="close-btn" (click)="closeSubscribePopup()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

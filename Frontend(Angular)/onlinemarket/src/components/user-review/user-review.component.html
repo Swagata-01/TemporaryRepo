@@ -1,0 +1,36 @@
+<div class="product-review-container">
+  <h3>Users Reviews</h3>
+  <div *ngIf="highestRatedReview" class="review-card">
+    <p><strong>{{ highestRatedReview.userName }} – {{ highestRatedReview.rating }} Stars</strong></p>
+    <p><em>{{ highestRatedReview.review }}</em></p>
+
+  </div>
+  <div *ngIf="!highestRatedReview">
+    <p>No reviews available for this product.</p>
+  </div>
+  <button *ngIf="highestRatedReview" class="more-reviews-btn" (click)="openPopup()">Click For More</button>
+
+  <div class="popup-overlay" *ngIf="showPopup">
+    <div class="popup">
+      <div class="header">
+        <h3 class="header-left">Users Reviews</h3>
+        <div class="header-right">
+          <button class="excel-export-btn" *ngIf="userService.isAdmin$ | async" (click)="exportToExcel()">
+            <span>Excel Export<br><small>(Only for Admin)</small></span>
+            <img src="assets/images/Excel_icon.png" alt="Excel Icon">
+          </button>
+          <button class="close-button" (click)="closePopup()">x</button>
+        </div>
+      </div>
+      <div class="popup-body">
+        <div *ngFor="let review of reviews.slice(0, 3)" class="review-item">
+          <div class="review-item-content">
+            <p><strong>{{ review.userName }} – {{ review.rating }} Stars</strong></p>
+            <p>{{ review.review }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="popup-footer"></div>
+    </div>
+  </div>
+</div>

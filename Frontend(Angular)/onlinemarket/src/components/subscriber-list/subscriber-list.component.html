@@ -1,0 +1,56 @@
+<div class="subscribers-popup">
+    <div class="popup-content">
+        <div class="popup-header">
+            <div class="header-left">
+        <h2>Product Subscribers List</h2>
+        </div>
+        <div class="header-right">
+        <div class="popup-buttons">
+            
+            <button class="export-button" (click)="downloadAsExcel()">
+                <img src="assets/images/Excel_icon.png">
+                Export Excel
+            </button>
+            <button class="close-button" (click)="closePopup()">x</button>
+            </div>
+        </div>
+        </div>
+        <div *ngIf="subscriberDetails && subscriberDetails.length > 0">
+            <table>
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Address Line 1</th>
+                        <th>Address Line 2</th>
+                        <th>Date of Birth</th>
+                        <th>Postal Code</th>
+                        <th>Contact No</th>
+                        <th>Added on</th>  
+                        <th>Updated on</th>              
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of subscriberDetails">
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.addressLine1}}</td>
+                        <td>{{user.addressLine2}}</td>
+                        <td>{{user.dateOfBirth | date}}</td>
+                        <td>{{user.postalCode}}</td>
+                        <td>{{user.contactNumber}}</td>
+                        <td>{{user.addedOn | date:'medium'}}</td>
+                        <td>{{user.updatedOn | date:'medium'}}</td>                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="!subscriberDetails || subscriberDetails.length === 0">
+            <p>No users have subscribed to this product yet.</p>
+        </div>
+ 
+    </div>
+</div>
+ 

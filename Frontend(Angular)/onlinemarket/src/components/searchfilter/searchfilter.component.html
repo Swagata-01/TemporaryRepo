@@ -1,0 +1,33 @@
+<div class="filter-section">
+    <h2>Search Filters</h2>
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+      <div>
+        <input type="text" formControlName="productName" placeholder="Product Name">
+        <div *ngIf="productNameControl?.invalid && (productNameControl?.dirty || productNameControl?.touched)">
+          <div *ngIf="productNameControl?.errors?.['pattern']">
+            * Product name should not have special characters.
+          </div>
+        </div>
+      </div>
+      <div>
+        <input type="number" formControlName="rating" placeholder="By Ratings" min="0" max="5" step="0.1">
+        <div *ngIf="ratingControl?.invalid && (ratingControl?.dirty || ratingControl?.touched)">
+          <div *ngIf="ratingControl?.errors?.['min']">
+            * Rating must be at least 0.
+          </div>
+          <div *ngIf="ratingControl?.errors?.['max']">
+            * Rating cannot exceed 5.
+          </div>
+        </div>
+      </div>
+      <div>
+        <input type="number" formControlName="count" placeholder="By Subscriptions" min="0">
+        <div *ngIf="countControl?.invalid && (countControl?.dirty || countControl?.touched)">
+          <div *ngIf="countControl?.errors?.['min']">
+            * Subscriptions count cannot be negative.
+          </div>
+        </div>
+      </div>
+      <button type="submit" [disabled]="searchForm.invalid">Submit</button>
+    </form>
+  </div>

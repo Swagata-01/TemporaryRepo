@@ -1,0 +1,81 @@
+<div class="home">
+  <section class="top-products">
+    <div class="top-subscribed">
+      <h2 id="subscribedProducts">
+        <span>{{ isLoggedIn ? 'My Subscribed Products' : 'Our Top Subscribed Products' }}</span>
+      </h2>
+      <div class="top-subscribed-container">
+        <div class="product"
+          *ngFor="let products of (isLoggedIn ? userSpecificSubscriptions : TopSubscribedProductList) | slice:0:(isLoggedIn ? 2 : TopSubscribedProductList.length)"
+          (click)="products?.productid !== undefined && viewProductDetails(products.productid)"
+          >
+          <div class="productimage">
+            <img [src]="products?.imageUrl"[alt]="products?.name">
+          </div>
+          <div class="productdescription">
+            <p>{{ products?.name }}</p>
+            <p *ngIf="products?.subscription_count !== undefined">{{ products?.subscription_count }} Subscribers</p>
+          </div>
+        </div>
+        <div *ngIf="isLoggedIn && userSpecificSubscriptions.length === 0 && !loadingUserSubscriptions">
+          <p class="alerts">You have not subscribed to any products.<br><br><br>Please make sure to check our Products
+          </p><br>
+          <button class="products-btn" [routerLink]="'/products'">View Products</button>
+        </div>
+        <div *ngIf="isLoggedIn && loadingUserSubscriptions">
+          <p class="alerts">Loading your subscriptions...</p>
+        </div>
+        <div *ngIf="!isLoggedIn && TopSubscribedProductList.length === 0">
+          <p class="alerts">No top subscribed products available.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="top-rated">
+      <h2 id="ratedProducts">
+        <span>{{ isLoggedIn ? 'My Rated Products' : 'Our Top Rated Products' }}</span>
+      </h2>
+      <div class="top-rated-container" *ngIf="!isLoggedIn && TopRatedProductsList.length > 0">
+        <div class="product" *ngFor="let products of TopRatedProductsList"
+        (click)="products?.productid !== undefined && viewProductDetails(products.productid)"
+          >
+          <div class="productimage">
+            <img [src]="products.imageUrl" alt="{{ products.name }}">
+          </div>
+          <div class="productdescription">
+            <p>{{ products?.name }}</p>
+            <p>{{ products?.avg_rating }} Stars</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf=" !isLoggedIn && TopRatedProductsList.length === 0">
+        <p class="alerts">No top-rated products available.</p>
+      </div>
+      <div class="top-rated-container" *ngIf="isLoggedIn && userSpecificRatings.length > 0">
+        <div class="product" *ngFor="let products of userSpecificRatings"
+        (click)="products?.productid !== undefined && viewProductDetails(products.productid)"
+          >
+          <div class="productimage">
+            <img [src]="products?.imageUrl" alt="{{ products.productName }}">
+          </div>
+          <div class="productdescription">
+            <p>{{ products?.productName }}</p>
+            <p>{{ products?.rating }} Stars</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isLoggedIn && loadingUserSubscriptions">
+        <p class="alerts">Loading your subscriptions...</p>
+      </div>
+      <div *ngIf="isLoggedIn && userSpecificRatings.length === 0 && !loadingUserRatings">
+        <p class="alerts">You have not rated any products.<br><br><br>Please make sure to check our Products
+        </p><br>
+        <button class="products-btn" [routerLink]="'/products'">View Products</button>
+      </div>
+    </div>
+
+
+  </section>
+</div>

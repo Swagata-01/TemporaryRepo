@@ -1,0 +1,101 @@
+<div class="profilepage">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile">
+    <div class="row">
+      <div class="column">
+        <label for="firstName">First Name:</label>
+        <input id="firstName" formControlName="firstName" class="form-control" />
+        <div *ngIf="profileForm.get('firstName')?.errors && profileForm.get('firstName')?.touched" class="text-danger">
+          <div *ngIf="profileForm.get('firstName')?.errors?.['required']">* First name is required.</div>
+          <div *ngIf="profileForm.get('firstName')?.errors?.['pattern']">* Enter a valid first name (3-15 characters, letters, dots, or underscores).</div>
+        </div>
+ 
+        <label for="lastName">Last Name:</label>
+        <input id="lastName" formControlName="lastName" class="form-control" />
+        <div *ngIf="profileForm.get('lastName')?.errors && profileForm.get('lastName')?.touched" class="text-danger">
+          <div *ngIf="profileForm.get('lastName')?.errors?.['required']">* Last name is required.</div>
+          <div *ngIf="profileForm.get('lastName')?.errors?.['pattern']">* Enter a valid last name (3-15 characters, letters, dots, or underscores).</div>
+        </div>
+ 
+        <label for="nickName">Nickname:</label>
+        <input id="nickName" formControlName="nickName" class="form-control" />
+        <div *ngIf="profileForm.get('nickName')?.errors && profileForm.get('nickName')?.touched" class="text-danger">
+          <div *ngIf="profileForm.get('nickName')?.errors?.['required']">* Nick name is required.</div>
+          <div *ngIf="profileForm.get('nickName')?.errors?.['pattern']">* Enter a valid nickname (3-15 characters, letters, dots, or underscores).</div>
+        </div>
+ 
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input id="dateOfBirth" type="date" formControlName="dateOfBirth" class="form-control" />
+        <div *ngIf="profileForm.get('dateOfBirth')?.errors && profileForm.get('dateOfBirth')?.touched" class="text-danger">
+          <div *ngIf="profileForm.get('dateOfBirth')?.errors?.['required']">* Date of Birth is required.</div>
+          <div *ngIf="profileForm.get('dateOfBirth')?.errors?.['minAge']">* Minimum age is 18 years.</div>
+        </div>
+ 
+        <label for="contactNumber">Phone:</label>
+        <input id="contactNumber" formControlName="contactNumber" class="form-control" />
+        <div *ngIf="profileForm.get('contactNumber')?.errors && profileForm.get('contactNumber')?.touched" class="text-danger">
+          <div *ngIf="profileForm.get('contactNumber')?.errors?.['required']">* Phone number is required.</div>
+          <div *ngIf="profileForm.get('contactNumber')?.errors?.['pattern']">* Enter a valid phone number.</div>
+        </div>
+      </div>
+ 
+      <div class="column">
+        <label for="addressLine1">Address Line 1:</label>
+        <input id="addressLine1" formControlName="addressLine1" class="form-control" />
+        <div *ngIf="profileForm.get('addressLine1')?.errors && profileForm.get('addressLine1')?.touched" class="text-danger">
+          <div *ngIf="profileForm.get('addressLine1')?.errors?.['required']">* Address Line 1 is required.</div>
+          <div *ngIf="profileForm.get('addressLine1')?.errors?.['minlength']">* Minimum length for Address Line 1 is 10 characters.</div>
+        </div>
+ 
+        <label for="addressLine2">Address Line 2:</label>
+        <input id="addressLine2" formControlName="addressLine2" class="form-control" />
+        <div *ngIf="profileForm.get('addressLine2')?.errors && profileForm.get('addressLine2')?.touched" class="text-danger">
+          <div *ngIf="profileForm.get('addressLine2')?.errors?.['required']">* Address Line 2 is required.</div>
+          <div *ngIf="profileForm.get('addressLine2')?.errors?.['minlength']">* Minimum length for Address Line 2 is 10 characters.</div>
+        </div>
+ 
+        <label for="postalCode">Postal Code:</label>
+        <input id="postalCode" formControlName="postalCode" class="form-control" />
+        <div *ngIf="profileForm.get('postalCode')?.errors && profileForm.get('postalCode')?.touched" class="text-danger">
+          <div *ngIf="profileForm.get('postalCode')?.errors?.['required']">* Postal code is required.</div>
+          <div *ngIf="profileForm.get('postalCode')?.errors?.['pattern']">* Enter a valid postal code (6 digits).</div>
+        </div>
+ 
+        <label for="photo">Upload Photo:</label>
+        <br>
+        <div class="photo-field">
+          <input id="photo" type="file" (change)="onFileChange($event)" class="form-control" name="photo"/>
+          <span class="remove-photo" (click)="removePhoto()">&#x2715;</span>
+        </div>
+        <div *ngIf="photoError" class="text-danger">
+          {{"* "+photoError }}
+        </div>
+      </div>
+      <div *ngIf="currentPhotoUrl" class="profile-photo">
+        <img [src]="currentPhotoUrl" alt="Profile Photo" />
+      </div>
+ 
+ 
+      <div class="column">
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" class="form-control" readonly />
+        <div *ngIf="profileForm.get('email')?.errors && profileForm.get('email')?.touched" class="text-danger">
+          <div *ngIf="profileForm.get('email')?.errors?.['required']">* Email is required.</div>
+          <div *ngIf="profileForm.get('email')?.errors?.['pattern']">* Enter a valid email address.</div>
+        </div>
+ 
+ 
+        <button type="submit" [disabled]="profileForm.invalid || photoError" class="btn btn-primary">Save Changes</button>
+        <br>
+        <br>
+        <button type="button" (click)="openSubscriptions()">View Subscriptions</button>
+        <app-product-subscriptions></app-product-subscriptions>
+        <br>
+        <br>
+        <button type="button" (click)="openReviewPopup()">View Product Review</button>
+        <app-product-review></app-product-review>
+      </div>
+    </div>
+  </form>
+</div>
+
+

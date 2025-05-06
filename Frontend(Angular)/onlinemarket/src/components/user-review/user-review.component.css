@@ -1,0 +1,194 @@
+.product-review-container {
+  width: 200px;
+  padding: 25px;
+  background: #f0c9dc;
+  border: 2px solid lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-review-container h3 {
+  background: rgb(219, 130, 219);
+  color: white;
+  padding: 10px;
+  width: 100%;
+  margin: 0;
+  border: 2px solid purple;
+  text-align: center;
+}
+
+.header h3 {
+  background: rgb(219, 130, 219);
+  color: white;
+  padding: 10px;
+  width: 30%;
+  margin: 0;
+  border: 2px solid purple;
+  text-align: center;
+}
+
+.review-card {
+  background: white;
+  padding: 10px;
+  margin: 10px 0;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  border: 2px solid purple;
+  width: 100%;
+  text-align: center;
+}
+
+.more-reviews-btn {
+  background-color: purple;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 200px;
+  font-weight: bold;
+}
+
+/* Popup Styles */
+.popup-overlay {
+  position: fixed;
+  /* Fixed to the viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  z-index: 1000;
+  /* Ensure it's on top */
+}
+
+.popup {
+  background: #f7d0e3;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 60%;
+  max-height: 80vh;
+  overflow-y: auto;
+  border: 3px solid purple;
+  /* Remove relative positioning from here unless specifically needed within the popup */
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-left {
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 10px;
+
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.5em;
+  flex-direction: row; /* Stack the text vertically */
+  text-align: left; /* Align text to the left */
+  position: relative;
+  margin-right: 10px;
+  gap:20px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #777;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+.popup-body {
+  margin-bottom: 15px;
+}
+
+.review-item {
+  padding: 10px 0;
+  border: lightblue;
+}
+
+.review-item-content {
+  border: 2px solid rgb(125, 212, 241);
+  background-color: rgb(202, 237, 248);
+}
+
+.review-item strong {
+  font-weight: bold;
+  color: #333;
+}
+
+.review-item p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.popup-footer {
+  display: flex;
+  justify-content: flex-end;
+  /* Align the Excel button to the right */
+}
+
+.excel-export-btn {
+  display: flex;
+   /* To stack the text and image vertically */
+  align-items: center; /* To center the text and image horizontally */
+  justify-content: center; /* To center content vertically within the button */
+  padding: 8px 12px; /* Adjust padding as needed */
+  border: 2px solid rgb(125, 212, 241);; /* Example border */
+  border-radius: 5px ; /* Example border radius */
+  background: #f7d0e3;
+  cursor: pointer;
+  gap: 8px;
+}
+
+.excel-export-btn:hover {
+  background-color: rgb(125, 212, 241);
+  /* Keep the same on hover for now */
+}
+
+
+.excel-export-btn img {
+  width: 25px; /* Adjust the width of the Excel icon as needed */
+  height: 25px; /* Maintain aspect ratio */
+}
+
+.excel-export-btn span {
+  text-align: center; /* Ensure text within the span is centered */
+  line-height: 1.2; /* Adjust line height for better readability of stacked text */
+}
+
+.close-button {
+  width: 24px; /* Adjust for a precise circular shape */
+  height: 24px; /* Adjust for a precise circular shape */
+  border-radius: 50%; /* Creates the circular shape */
+  border: 1px solid purple;
+  color: white;
+  font-size: 14px; /* Adjust the size of the 'x' */
+  cursor: pointer;
+  background: rgb(219, 130, 219);
+  margin-left: 0; /* Keep the left margin for spacing */
+  margin-top: 0; /* Reset any potential top margin */
+}

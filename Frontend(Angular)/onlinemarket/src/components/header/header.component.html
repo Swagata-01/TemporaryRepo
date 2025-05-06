@@ -1,0 +1,17 @@
+<div class="header">
+    <div class="header-left">
+      <img src="assets/images/OnlineMarketPlaceLogo.jpg" alt="OnlineMarket Logo" />
+    </div>
+    <div class="header-center">
+      <h1>Online Market Place</h1>
+    </div>
+    <div class="header-right">
+      <div class="header-right-content">
+        <img [src]="userIconSource" alt="User Icon" />
+        <div class="usernamebox">
+          <p id="usernameBox" *ngIf="loggedIn && userDetails?.firstName">{{ userDetails?.firstName }}</p>
+          <p id="usernameBox" *ngIf="!loggedIn" style="display: none;">Guest</p>
+        </div>
+      </div>
+    </div>
+  </div>

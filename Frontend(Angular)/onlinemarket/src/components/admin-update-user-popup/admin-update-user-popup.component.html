@@ -1,0 +1,240 @@
+<!-- <div class="popup-overlay" >
+    <div class="popup-content">
+        <div class="search-section">
+            <h2>Update User</h2>
+            <div class="search-container">
+                <label for="searchEmail">Search user email:</label><br>
+                <input type="email" id="searchEmail" name="searchEmail" [(ngModel)]="searchEmail">
+                <button class="search-button" (click)="searchUserByEmail()">Search</button>
+            </div>
+            <div *ngIf="userNotFoundMessage" class="user-not-found">{{ userNotFoundMessage }}</div>
+        </div>
+ 
+        <div *ngIf="foundUser" class="user-details-section">
+            <div class="active-status-container">
+                <label for="activeStatus">Active Status:</label>
+                <input type="checkbox" id="activeStatus" name="activeStatus" [(ngModel)]="foundUser.isActive">
+   
+            </div>
+ 
+            <div class="action-buttons">
+                <button (click)="showProfile = true; showSubscriptions = false; showReviews = false">View Profile</button>
+                <button (click)="showProfile = false; showSubscriptions = true; showReviews = false">View Product Subscriptions</button>
+                <button (click)="showProfile = false; showSubscriptions = false; showReviews = true">View Product Reviews</button>
+                <button class="submit-button" (click)="submitForm()">Submit</button>
+            </div>
+ 
+            <div *ngIf="showProfile">
+                <app-profile [userId]="foundUser.userID" (close)="showProfile = false"></app-profile>
+            </div>
+ 
+            <div *ngIf="showSubscriptions">
+                <app-product-subscriptions [userId]="foundUser.userID" (close)="showSubscriptions = false"></app-product-subscriptions>
+            </div>
+ 
+            <div *ngIf="showReviews">
+                <app-product-review [userId]="foundUser.userID" (close)="showReviews = false"></app-product-review>
+            </div>
+        </div>
+ 
+        <button class="close-button" (click)="closePopup()">&times;</button>
+    </div>
+</div> -->
+ 
+<!----------------------------------------------------------------------------------------------------------------------
+ 
+// above is using components code -->
+ 
+<div class="popup-overlay" >
+    <div class="popup-content">
+        <div class="search-section">
+            <h2>Update User</h2>
+            <div class="search-container">
+                <label for="searchEmail">Search user email:</label><br>
+                <input type="email" id="searchEmail" name="searchEmail" [(ngModel)]="searchEmail">
+                <button class="search-button" (click)="searchUserByEmail()">Search</button>
+            </div>
+            <div *ngIf="userNotFoundMessage" class="user-not-found">{{ userNotFoundMessage }}</div>
+        </div>
+ 
+        <div *ngIf="foundUser" class="user-details-section">
+            <div class="active-status-container">
+                <label for="activeStatusToggle">Active Status:</label>
+                <!-- <label class="switch">
+                    <input type="checkbox" id="activeStatusToggle" name="activeStatus" [checked]="foundUser.isActive" (change)="updateUserActiveStatus($event)">
+                    <span class="slider round"></span>
+                    Status: <span [style.color]="foundUser.isActive ? 'green' : 'red'">
+                        {{ foundUser.isActive ? 'Active' : 'Inactive' }}
+                    </span>
+                    <button (click)="updateUserActiveStatus($event)" class="status-toggle-button">
+                        {{ foundUser.isActive ? 'Mark Inactive' : 'Mark Active' }}
+                    </button>
+                </label> -->
+                <input type="checkbox" id="activeStatus" name="activeStatus" [checked]="foundUser.isActive" (change)="updateUserActiveStatus($event)">
+                <span>{{ foundUser.isActive ? 'Active' : 'Inactive' }}</span>
+            </div>
+ 
+            <div class="action-buttons">
+                <button (click)="showProfileSection = true; showSubscriptionsSection = false; showReviewsSection = false">View Profile</button>
+                <button (click)="showProfileSection = false; showSubscriptionsSection = true; showReviewsSection = false">View Product Subscriptions</button>
+                <button (click)="showProfileSection = false; showSubscriptionsSection = false; showReviewsSection = true">View Product Reviews</button>
+                <button class="submit-button" (click)="submitMainForm()">Submit</button>
+            </div>
+ 
+            <div *ngIf="showProfileSection" class="profile-section">
+                <h3>Profile</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" id="firstName" [(ngModel)]="foundUser.firstName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" [(ngModel)]="foundUser.lastName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="dob" [(ngModel)]="foundUser.dateOfBirth" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="text" id="phone" [(ngModel)]="foundUser.contactNumber" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="address1">Address Line 1:</label>
+                        <input type="text" id="address1" [(ngModel)]="foundUser.addressLine1" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="address2">Address Line 2:</label>
+                        <input type="text" id="address2" [(ngModel)]="foundUser.addressLine2" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="postalCode">Postal Code:</label>
+                        <input type="text" id="postalCode" [(ngModel)]="foundUser.postalCode" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" [(ngModel)]="foundUser.email" class="form-control" readonly>
+                    </div>
+                </div>
+                </div>
+ 
+            <div *ngIf="showSubscriptionsSection" class="subscriptions-section">
+                <h3>Product Subscriptions</h3>
+                <div class="subscription-grid">
+                    <div *ngFor="let subscription of userSubscriptions;  let i = index" class="subscription-item">
+                        <img [src]="subscription.imageUrl" alt="{{ subscription.productName }}" class="product-image">
+                        <div class="product-info">
+                            <div class="product-name">{{ subscription.productName }}</div>
+                            <div class="subscribers">{{ subscription.subscribersCount }} subscribers</div>
+                            <div class="rating">{{ subscription.averageRating }} stars</div>
+                        </div>
+                        <button class="delete-button" (click)="deleteSubscription(subscription.productId, i)">Delete</button>
+                        </div>
+                </div>
+            </div>
+ 
+            <div *ngIf="showReviewsSection" class="reviews-section">
+                <h3>Product Reviews</h3>
+ 
+                <div *ngFor="let review of userReviews" class="review-container">
+ 
+                    <div class="product-info-header">
+                        <img [src]="'http://localhost:9090/OMP/product/image/'+review.productid" alt="{{ review.productName }}" class="product-image-small">
+                        <div class="product-details-small">
+                            <div class="product-name-small">{{ review.productName }}</div>
+                            </div>
+                    </div>
+ 
+ 
+                    <div class="user-review-box">
+                        <div class="review-header">
+                            <div class="review-rating">{{ review.rating }} Stars</div>
+                            </div>
+                        <div class="review-text">
+                            {{ review.review }}
+                        </div>
+                        <div class="review-status">
+                            Status: <span [style.color]="review.reviewActiveStatus ? 'green' : 'red'">
+                                {{ review.reviewActiveStatus ? 'Active' : 'Inactive' }}
+                            </span>
+                            <button (click)="toggleReviewStatus(review)" class="status-toggle-button">
+                                {{ review.reviewActiveStatus ? 'Mark Inactive' : 'Mark Active' }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+ 
+                <button class="section-submit-button" (click)="submitReviewChanges()">Save Review Changes</button>
+            </div>
+ 
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        </div>
+ 
+        <button class="close-button" (click)="closePopup()">&times;</button>
+    </div>
+</div>
+ 
+<style>
+    /* Basic styles for the toggle switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+ 
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+ 
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+ 
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+ 
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+ 
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+ 
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+ 
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+ 
+    .slider.round:before {
+      border-radius: 50%;
+    }
+</style>
+ 

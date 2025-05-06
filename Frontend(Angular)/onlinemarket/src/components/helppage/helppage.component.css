@@ -1,0 +1,38 @@
+.help-container {
+    background-color:  #FFDAB9;
+    display: flex;
+    justify-content: center; /* Centers the box horizontally */
+    align-items: center; /* Centers the box vertically */
+    height: 60vh;
+    top: 60px;
+  }
+   
+  .help-box {
+    background-color:#E59EDD;
+    border: 2px solid purple;
+    border-radius: 0px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(236, 234, 234, 0.1);
+    max-width: 1000px;
+    color: white;
+   
+  }
+   
+   
+  .help-box h2 {
+      color: #010168;
+      margin-bottom: 10px;
+  }
+   
+  .help-box p {
+      margin: 10px 0;
+  }
+   
+  .help-box a {
+      color: #010168;
+      text-decoration: none;
+  }
+   
+  .help-box a:hover {
+      text-decoration: underline;
+  }

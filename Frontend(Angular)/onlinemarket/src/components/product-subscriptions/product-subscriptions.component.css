@@ -1,0 +1,150 @@
+/* product-subscriptions.component.css */
+h3{
+    display: block;
+    width: fit-content;
+    color: white;
+    padding: 10px;
+    border: 2px solid purple;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 20px; /* Increased left margin */
+    margin-right: auto; /* Keep right margin auto for right alignment relative to the increased left */
+ 
+}
+
+
+.popup-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000; /* Ensure it's on top of other content */
+border-radius: 10px;
+}
+
+.popup {
+background-color: #E59EDD; /* Or your desired popup background */
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+width: 80%; /* Adjust width as needed */
+max-width: 600px; /* Set a maximum width */
+position: relative; /* For positioning close button if needed */
+border: 2px solid purple; /* Add this line to create a 2px solid purple border */
+max-height: 80vh; 
+overflow-y: auto;
+}
+
+.popup h2 {
+display: inline-block; /* Ensure it takes full width within the popup */
+color: white;
+padding: 10px;
+border: 2px solid purple;
+border-radius: 5px;
+margin-bottom: 20px;
+text-align: center;
+margin-top: 0; /* Reset top margin */
+margin-left: 0; /* Reset left margin */
+}
+
+.subscription-list {
+list-style: none;
+padding: 0;
+display: flex;
+flex-direction: row;
+gap: 10px; /* Reduced gap for better fit in popup */
+overflow-x: auto;
+flex-wrap: wrap;
+justify-content: flex-start; /* Align items to the start in the popup */
+}
+
+.subscription-item {
+padding: 10px; /* Reduced padding for better fit in popup */
+border-radius: 8px; /* Slightly smaller border-radius */
+width: 150px; /* Reduced width for better fit in popup */
+margin-bottom: 10px;
+
+display: flex;
+flex-direction: column;
+align-items: center;
+flex-shrink: 0;
+}
+
+.product-image {
+width: 130px; /* Reduced image width */
+height: 140px; /* Reduced image height */
+border: 2px solid purple;
+margin-bottom: 5px;
+}
+
+.product-info {
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 100%;
+border: 2px solid purple;
+color: white;
+background-color: #E59EDD;
+padding-top: 5px;
+padding-bottom: 3px;
+text-align: center;
+font-size: 0.9em; /* Slightly smaller font */
+}
+
+.product-info p {
+margin: 1px 0;
+}
+
+.subscription-actions {
+margin-top: 5px;
+}
+
+.subscription-actions input[type="checkbox"] {
+width: 18px;
+height: 18px;
+}
+
+.subscription-indicator {
+margin-top: 5px;
+}
+
+.submit-button,
+.popup button[type="button"] {
+padding: 8px 12px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+font-weight: bold;
+font-size: 0.9em;
+margin-top: 10px;
+}
+
+.submit-button {
+background-color: rgb(139, 2, 139);
+color: white;
+}
+
+.popup button[type="button"] {
+background-color: #6c757d;
+color: white;
+}
+
+.no-subscriptions {
+color: #777;
+font-style: italic;
+text-align: center;
+margin-top: 15px;
+}
+
+.popup .button-group {
+display: flex;
+justify-content: center;
+gap: 10px;
+margin-top: 15px;
+}

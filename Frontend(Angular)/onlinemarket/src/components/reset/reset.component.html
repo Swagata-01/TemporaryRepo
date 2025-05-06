@@ -1,0 +1,45 @@
+
+
+<div class="container">
+    <div class="reset-password">
+        <form [formGroup]="resetPasswordForm" (ngSubmit)="resetPassword()">
+            <h2>Reset Password</h2>
+
+            <p class="email-display" *ngIf="emailFromQuery">
+                {{ emailFromQuery }}
+            </p>
+
+            <div class="row">
+                <div class="column">
+                    <h1></h1>
+                    <input type="password" formControlName="password" placeholder="New Password" required>
+                    <div
+                        *ngIf="resetPasswordForm.get('password')?.invalid && resetPasswordForm.get('password')?.touched"
+                        class="error">
+                        <div *ngIf="resetPasswordForm.get('password')?.errors?.['required']">Password is
+                            required.</div>
+                        <div *ngIf="resetPasswordForm.get('password')?.errors?.['pattern']">Password must include at least one uppercase letter, one lowercase letter, and one number (min 6 characters).</div>
+                        <div *ngIf="resetPasswordForm.get('password')?.errors?.['minlength']">Password must be
+                            at least 6 characters.</div>
+                    </div>
+
+                    <input type="password" formControlName="confirmPassword" placeholder="Confirm New Password"
+                        required>
+                    <div
+                        *ngIf="resetPasswordForm.get('confirmPassword')?.invalid && resetPasswordForm.get('confirmPassword')?.touched"
+                        class="error">
+                        <div *ngIf="resetPasswordForm.get('confirmPassword')?.errors?.['required']">Confirming
+                            password is required.</div>
+                        <div *ngIf="resetPasswordForm.get('confirmPassword')?.errors?.['mismatch']">
+                            Passwords must match.</div>
+                    </div>
+                </div>
+            </div>
+
+            <re-captcha (resolved)="onCaptchaResolved($event)"
+                siteKey="6Lf_uRMrAAAAAMXgbKvXDk9Mmwza9GaZY3bvoRFG"></re-captcha>
+
+            <button type="submit" class="submit" [disabled]="resetPasswordForm.invalid">Reset Password</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="page">
+  <app-header [loggedIn]="loggedIn"></app-header>
+  <div class="nav">
+    <div class="nav-left">
+      <a class="menu-link" id="home" [routerLink]="'/home'" routerLinkActive="active">Home</a>
+      <a class="menu-link" id="products" [routerLink]="'/products'" routerLinkActive="active">Products</a>
+      <a class="menu-link" id="admin" *ngIf="loggedIn && isAdmin" [routerLink]="'/admin'" routerLinkActive="active">Admin</a>
+      <a class="menu-link" id="help"  [routerLink]="'/help'" routerLinkActive="active">Help</a>
+    </div>
+    <div class="nav-right">
+      <a class="menu-link" id="signIn" *ngIf="!loggedIn" [routerLink]="'/signin'"  routerLinkActive="active">Sign In</a>
+      <a class="menu-link" id="signUp" *ngIf="!loggedIn" [routerLink]="'/signup'" routerLinkActive="active">Sign Up</a>
+      <a class="menu-link" id="profile" *ngIf="loggedIn" [routerLink]="'/profile'" routerLinkActive="active">Profile</a>
+      <a class="menu-link button-link" id="logout" *ngIf="loggedIn" (click)="logout()">Logout</a>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,39 @@
+<div class="popup-overlay" *ngIf="showSubscriptionPopup">
+    <div class="popup">
+        <h3>Product Subscriptions</h3>
+        <div *ngIf="subscriptions && subscriptions.length > 0; else noSubscriptions">
+            <ul class="subscription-list">
+                <li *ngFor="let subscription of subscriptions" class="subscription-item">
+                    <img [src]="subscription.imageUrl" alt="{{ subscription.name }}" class="product-image">
+                    <div class="product-info">
+                        <p>{{ subscription.name }}</p>
+                        <p>Subscribers: {{ subscription.subscription_count }}</p>
+                        <p>Rating: {{ subscription.avg_rating }} stars</p>
+                    </div>
+                    <div class="subscription-actions">
+                        <label>
+                            <input
+                                type="checkbox"
+                                [checked]="true"
+                                [(ngModel)]="subscription.isSelectedToRemove"
+                            />
+                        </label>
+                    </div>
+                    <div class="subscription-indicator">
+                    </div>
+                </li>
+            </ul>
+            <div class="button-group">
+                <button class="submit-button" (click)="removeSelectedSubscriptions()">Submit</button>
+                <button type="button" (click)="closeSubscriptionPopup()">Close</button>
+            </div>
+        </div>
+        <ng-template #noSubscriptions>
+            <p>You are not currently subscribed to any products.</p>
+            <button type="button" (click)="closeSubscriptionPopup()">Close</button>
+        </ng-template>
+        <div *ngIf="updateSuccessMessage" class="success-message">
+            {{ updateSuccessMessage }}
+        </div>
+    </div>
+  </div>

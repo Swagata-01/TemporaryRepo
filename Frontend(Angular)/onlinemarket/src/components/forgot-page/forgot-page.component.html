@@ -1,0 +1,48 @@
+<!-- <div class="container">
+    <div class="signin">
+        <form (submit)="onSubmit($event)">
+            <h2>Forget Password</h2>
+            <div class="row">
+                <div class="column">
+                    <input type="email" [(ngModel)]="email" name="email" placeholder="Enter email" required>
+                </div>
+            </div>
+            <re-captcha (resolved)="onCaptchaResolved($event)"
+                siteKey="6Lf_uRMrAAAAAMXgbKvXDk9Mmwza9GaZY3bvoRFG"></re-captcha>
+            <div class="column">
+            <button type="submit" class="submit">Submit</button>
+            </div>
+        </form>
+
+    </div>
+    <div class="divider"></div>
+    <div class="signin">
+        <button class="signin-btn" [routerLink]="'/signin'">Sign In</button>
+    </div>
+</div> -->
+
+<div class="container">
+    <div class="signin">
+      <form [formGroup]="forgotForm" (ngSubmit)="onSubmit()">
+        <h2>Forget Password</h2>
+        <div class="row">
+          <div class="column">
+            <input type="email" formControlName="email" placeholder="Enter email" required>
+            <div *ngIf="forgotForm.get('email')?.invalid && forgotForm.get('email')?.touched" class="error">
+              <div *ngIf="forgotForm.get('email')?.errors?.['required']">Email is required.</div>
+              <div *ngIf="forgotForm.get('email')?.errors?.['email']">Enter a valid email.</div>
+            </div>
+          </div>
+        </div>
+        <re-captcha (resolved)="onCaptchaResolved($event)"
+                    siteKey="6Lf_uRMrAAAAAMXgbKvXDk9Mmwza9GaZY3bvoRFG"></re-captcha>
+        <div class="column">
+          <button type="submit" class="submit" [disabled]="forgotForm.invalid">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="divider"></div>
+    <div class="signin">
+      <button class="signin-btn" [routerLink]="'/signin'">Sign In</button>
+    </div>
+  </div>

@@ -1,0 +1,76 @@
+  /* Header Styles */
+  .header {
+      text-align: center;
+      padding: 0 0;
+      margin: 0 0;
+      background-color: #FFDAB9;
+      font-family: Arial, sans-serif;
+      display: flex; 
+      align-items: center;
+      justify-content: space-between;
+  }
+
+  .header-left,
+  .header-center,
+  .header-right {
+      flex: 1;
+  }
+
+  .header-left {
+      text-align: left;
+      padding: 0;
+      margin: 0;
+  }
+
+  .header-left img {
+      width: 150px;
+      height: 100px;
+      flex-direction: column;
+      align-items: flex-end;
+  }
+
+  .header-center {
+      text-align: center;
+  }
+
+  .header-center h1 {
+      margin: 0;
+      font-size: 30px;
+      color: purple;
+      
+  }
+
+  .header-right {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+  }
+
+  .header-right img {
+      width: 60px;
+      height: 60px;
+      margin: 0;
+      border-top: 25px solid green;
+      border-left: 25px solid green;
+      border-right: 25px solid green;
+  }
+
+  .header-right-content{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    
+  }
+  .usernamebox {
+      width:auto;
+      height:auto;
+      text-align: center;
+      background-color: blue;
+      color: white;
+      border-left: 25px solid green;
+      border-right: 25px solid green;
+      margin: 0;
+      font-size:x-small;
+  }
