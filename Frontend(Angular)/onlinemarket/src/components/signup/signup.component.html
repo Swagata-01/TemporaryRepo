@@ -27,7 +27,7 @@
  
       <!-- Date of Birth -->
       <label for="dob">Date of Birth:</label>
-      <input id="dob" type="date" pattern="dd-MM-yyyy" formControlName="dob" class="form-control" />
+      <input id="dob" type="date" formControlName="dob" class="form-control" />
       <div *ngIf="signUpForm.get('dob')?.errors && signUpForm.get('dob')?.touched" class="text-danger">
         <div *ngIf="signUpForm.get('dob')?.errors?.['required']">* Date of Birth is required.</div>
         <div *ngIf="signUpForm.get('dob')?.errors?.['minAge']">* Minimum age is 18 years.</div>
