@@ -17,7 +17,7 @@ CREATE TABLE Users (
     addressLine2 VARCHAR(255) CHECK (LENGTH(addressLine2)>=10),
     postalCode INT,
     address VARCHAR(255) NOT NULL CHECK (LENGTH(Address)>=10),
-    contactnumber VARCHAR(15) NOT NULL CHECK (LENGTH(ContactNumber)>=10 AND ContactNumber LIKE '9%'),
+    contactnumber VARCHAR(15) NOT NULL CHECK (LENGTH(ContactNumber)>=10),
     photo BLOB,
     dateofbirth DATE NOT NULL,
     userrole ENUM('ADMIN', 'USER') NOT NULL DEFAULT 'USER',
