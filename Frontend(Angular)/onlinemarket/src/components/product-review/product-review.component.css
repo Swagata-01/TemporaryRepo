@@ -5,118 +5,173 @@ h3 {
     color: white;
     padding: 10px;
     border: 2px solid purple;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: center;
     margin-top: 20px;
-    margin-left: 20px; /* Increased left margin */
-    margin-right: auto; /* Keep right margin auto for right alignment relative to the increased left */
+    margin-left: 20px;
+    margin-right: auto;
 }
- 
+
 .popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Ensure it's on top of other content */
+    z-index: 1000;
     border-radius: 10px;
 }
- 
+
 .popup {
-    background-color: #E59EDD; /* Or your desired popup background */
+    background-color: #E59EDD;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    width: 80%; /* Adjust width as needed */
-    max-width: 600px; /* Set a maximum width */
-    position: relative; /* For positioning close button if needed */
-    border: 2px solid purple; /* Add this line to create a 2px solid purple border */
+    width: 80%; /* Control the overall width of the popup */
+    max-width: 600px;
+    position: relative;
+    border: 2px solid purple;
     max-height: 80vh;
     overflow-y: auto;
 }
- 
+
 .popup h2 {
-    display: inline-block; /* Ensure it takes full width within the popup */
+    display: inline-block;
     color: white;
     padding: 10px;
     border: 2px solid purple;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: center;
-    margin-top: 0; /* Reset top margin */
-    margin-left: 0; /* Reset left margin */
+    margin-top: 0;
+    margin-left: 0;
 }
- 
+
 .review-list {
     list-style: none;
     padding: 0;
-    display: flex;
-    flex-direction: row;
-    gap: 10px; /* Reduced gap for better fit in popup */
-    overflow-x: auto;
-    flex-wrap: wrap;
-    justify-content: flex-start; /* Align items to the start in the popup */
 }
- 
+
 .review-item {
-    padding: 10px; /* Reduced padding for better fit in popup */
-    border-radius: 8px; /* Slightly smaller border-radius */
-    width: 150px; /* Reduced width for better fit in popup */
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-    border: 2px solid purple; /* Add border to review items */
-    color: white; /* Set text color */
-    background-color: #E59EDD; /* Set background color */
-}
- 
-.product-image {
-    width: 130px; /* Reduced image width */
-    height: 140px; /* Reduced image height */
-    border: 2px solid purple;
-    margin-bottom: 5px;
-}
- 
-.product-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 2px solid purple; /* The main border for the single box */
     color: white;
     background-color: #E59EDD;
-    padding-top: 5px;
-    padding-bottom: 3px;
+}
+
+.reviews-container {
+    display: flex; /* Arrange individual reviews horizontally */
+    flex-direction: row;
+    flex-wrap: wrap; /* Allow wrapping if there are many products */
+    gap: 20px; /* Spacing between individual product reviews */
+}
+
+.single-review {
+    display: flex;
+    flex-direction: column; /* Stack elements within each product review */
+    align-items: flex-start; /* Align content to the left */
+    width: calc(33.33% - 20px); /* Adjust width as needed */
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.product-overview {
+    display: flex;
+    flex-direction: column; /* Stack image and info box vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.product-image {
+    width: 120px; /* Adjust size as needed */
+    height: 140px; /* Adjust size as needed */
+    border: 1px solid purple;
+    object-fit: cover;
+    flex-shrink: 0;
+    margin-right: 0;
+    margin-bottom: 3px;
+}
+
+.product-info-box {
+    display: flex;
+    flex-direction: column; /* Stack name, subscribers, rating */
+    align-items: center; /* Center text within the box */
+    color: white;
+    background-color: #f713d9; /* Set the background color for the box */
+    padding: 8px;
     text-align: center;
-    font-size: 0.9em; /* Slightly smaller font */
+    font-size: 0.9em;
+    border: 2px solid rgb(210, 12, 196);
+    border-radius: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    margin-top: 10px;
+    box-sizing: border-box;
 }
- 
-.product-info p {
+
+.product-name {
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 1px;
+}
+
+.product-info-box p {
     margin: 1px 0;
+    font-size: 0.9em;
 }
- 
-.review-actions {
+
+.review-details {
+    width: 100%;
     margin-top: 5px;
+    border: 2px solid rgb(40, 178, 237);
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    position: relative; /* For absolute positioning of the button */
+    padding-right: 25px; /* Space for the button */
+    background-color: rgb(172, 213, 230);
 }
- 
+
+.product-description {
+    font-style: italic;
+    color: #faf9f9;
+    font-size: 0.8em;
+    margin-bottom: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    flex-grow: 1;
+}
+
+.review-actions {
+    position: absolute;
+    top: 5px; /* Position from the top */
+    right: 5px; /* Position from the right */
+    margin-top: 0;
+    z-index: 10; /* Ensure it's on top */
+}
+
 .review-actions span.bin-icon {
     font-size: 1.2em;
     cursor: pointer;
-    color: white; /* Style the delete icon */
+    color: white;
 }
- 
+
 .button-group {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
- 
+
 .submit-button,
 .popup button[type="button"] {
     padding: 8px 12px;
@@ -125,29 +180,29 @@ h3 {
     cursor: pointer;
     font-weight: bold;
     font-size: 0.9em;
-    margin-top: 10px;
+    margin-top: 8px;
 }
- 
+
 .submit-button {
     background-color: rgb(139, 2, 139);
     color: white;
 }
- 
+
 .popup button[type="button"] {
     background-color: #6c757d;
     color: white;
 }
- 
+
 .no-reviews {
-    color: #777;
+    color: #171616;
     font-style: italic;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 10px;
 }
- 
+
 .success-message {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 10px;
     padding: 10px;
     background-color: #d4edda;
     color: #155724;
