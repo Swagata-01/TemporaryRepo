@@ -1,46 +1,49 @@
 export interface IProductDTO{
-    productid : number,
-    name : String,
-    imageUrl : String;
-    description : String,
-    avg_rating : number,
-    subscription_count : number
+  productid : number,
+  name : string,
+  imageUrl? : string; // Make imageUrl optional
+  description? : string, // Make description optional
+  avg_rating : number,
+  subscription_count : number
 }
-
-export interface IReview { 
+ 
+export interface IReview {
   ratingId: number;
   productid: number;
   productName: string;
-  imageUrl: string;
-  subscribersCount: number;
+  imageUrl? : string; // Make imageUrl optional
+  subscribersCount?: number; // Make subscribersCount optional
   averageRating: number;
   rating: number;
   review: string;
   reviewActiveStatus : boolean
 }
-
+ 
 export interface ISigninResponse{
-    message : String,
-    success : boolean,
-    email : String
+  message : String,
+  success : boolean,
+  email : String
 }
-
+ 
 export interface IRatingDTO extends IProductDTO{
 ratingId : number,
 productid : number,
-productName : String,
+productName : string,
 userId : number,
 rating : number,
-review : String,
+review : string,
 reviewCreatedOn : Date,
 reviewUpdatedOn : Date,
 reviewDeletedOn : Date,
-reviewActiveStatus : boolean
+reviewActiveStatus : boolean,
+subscribersCount?: number;
+imageUrl? : string;
+description? : string;
 }
-
+ 
 export type IUserIdResponse = number;
-
-
+ 
+ 
 export interface IUserDetails {
   userID: number;
   firstName: string;
@@ -57,7 +60,4 @@ export interface IUserDetails {
   createdOn: string;
   updatedOn: string;
 }
-
-
-
-
+ 
