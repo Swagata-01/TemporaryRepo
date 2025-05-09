@@ -43,7 +43,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
 
   // Bulk Upload
   showAddMultipleProductsPopup: boolean = false;
-  bulkProductActive: boolean = false;
+  bulkProductisactive: boolean = false;
   bulkFile: File | null = null;
 
   // Update Product
@@ -56,7 +56,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     name: string;
     upName: string;
     upDescription: string;
-    active: boolean;
+    isActive: boolean;
     image: File | null;
     imageUrl: string;
   } = {
@@ -64,7 +64,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     name: '',
     upName: '',
     upDescription: '',
-    active: false,
+    isActive: undefined as any,
     image: null,
     imageUrl: ''
   };
@@ -81,6 +81,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   constructor(private productService: ProductService, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    console.log (this.product.isActive);
     this.isAdminSubscription$ = this.userService.isAdmin$.subscribe(isAdmin => {
       this.isAdminLoggedIn = isAdmin; // Update the boolean based on the observable
       this.isLoading = false;
@@ -176,7 +177,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   closeAddMultipleProductsPopup() {
     this.showAddMultipleProductsPopup = false;
     this.bulkFile = null;
-    this.bulkProductActive = false;
+    this.bulkProductisactive = false;
   }
 
   onBulkFileChange(event: any) {
@@ -210,7 +211,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
             this.product = response[0];
             this.product.upName = response[0].name;
             this.product.upDescription = response[0].description;
-            this.product.active = response[0].isActive === 1;
+            this.product.isActive = response[0].isActive;
             this.productService.getProductImageByName(this.product.name)
               .subscribe(imageBlob => {
                 const reader = new FileReader();
@@ -259,9 +260,11 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
       this.product.upName,
       this.product.upDescription,
       imageFile,
-      this.product.active ? true: false
+      this.product.isActive ? true: false
+      
     ).subscribe(response => {
       alert('Product updated successfully!');
+      
       this.showUpdatePopup = false;
       this.resetUpdateProductForm();
       if (response && response.imageUrl) {
@@ -272,7 +275,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
       console.error('Error updating product:', error);
     });
   }
-
+  
   closeUpdateProductPopup() {
     this.showUpdatePopup = false;
     this.resetUpdateProductForm();
@@ -284,7 +287,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
       name: '',
       upName: '',
       upDescription: '',
-      active: false,
+      isActive: false,
       image: null,
       imageUrl: ''
     };
@@ -343,5 +346,5 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
       alert('Error: Could not update user (ID missing).');
     }
   }
-
+  
 }
