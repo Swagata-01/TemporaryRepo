@@ -1,34 +1,43 @@
 <div class="popup-overlay" *ngIf="showReviewPopup">
-    <div class="popup">
+  <div class="popup">
       <h3>Product Reviews</h3>
       <div *ngIf="reviews && reviews.length > 0; else noReviews">
-        <ul class="review-list">
-          <li *ngFor="let review of reviews" class="review-item" [ngClass]="{'inactive-review': !review.isActive}">
-            <img [src]="review.imageUrl" alt="{{ review.productName }}" class="product-image">
-            <div class="product-info">
-              <p>{{ review.review }}</p>
-              <p>Rating: {{ review.rating }} stars</p>
-            </div>
-            <div class="review-actions">
-              <span class="bin-icon" (click)="deleteReview(review)" title="Remove Review">🗑️</span>
-            </div>
-          </li>
-        </ul>
-        <div class="button-group">
-          <button class="submit-button" (click)="submitReviews()">Submit</button>
-          <button type="button" (click)="closeReviewPopup()">Close</button>
-        </div>
+          <div class="review-item">
+              <div class="reviews-container">
+                  <div *ngFor="let review of reviews" class="single-review">
+                      <div class="product-overview">
+                          <a [href]="getProductLink(review)" target="_blank" style="display: block;">
+                              <img [src]="review.imageUrl" alt="{{ review.productName }}" class="product-image" style="cursor: pointer;">
+                          </a>
+                          <div class="product-info-box">
+                            <p class="product-name">{{ review.productName }}</p>
+                            <p>{{ review.subscribersCount }} Subscribers</p>
+                            <p>{{ review.rating }} stars</p>
+                        </div>
+                      </div>
+                      <div class="review-details">
+                          <p class="product-description">{{ review.description }}</p>
+                          <div class="review-actions">
+                              <span class="bin-icon" (click)="deleteReview(review)" title="Remove Review">🗑️</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="button-group">
+              <button class="submit-button" (click)="submitReviews()">Submit</button>
+              <button type="button" (click)="closeReviewPopup()">Close</button>
+          </div>
       </div>
       <ng-template #noReviews>
-        <p>You have not reviewed any products yet.</p>
-        <button type="button" (click)="closeReviewPopup()">Close</button>
+          <p>You have not reviewed any products yet.</p>
+          <button type="button" (click)="closeReviewPopup()">Close</button>
       </ng-template>
       <div *ngIf="updateSuccessMessage" class="success-message">
-        {{ updateSuccessMessage }}
+          {{ updateSuccessMessage }}
       </div>
       <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
+          {{ errorMessage }}
       </div>
-    </div>
   </div>
- 
+</div>
